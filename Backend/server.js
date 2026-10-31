@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 
 const authRoutes = require("./routes/auth");
+const staffRoutes = require("./routes/staff");
+const productRoutes = require("./routes/products");
+const variantRoutes = require("./routes/variants");
+const planRoutes = require("./routes/plans");
 const db = require("./config/db");
 
 const authMiddleware = require("./middleware/authMiddleware");
@@ -20,6 +24,10 @@ db.getConnection()
 // Middleware
 app.use(express.json());
 app.use("/api/auth", authRoutes);
+app.use("/api/staff", staffRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/variants", variantRoutes);
+app.use("/api/plans", planRoutes);
 
 app.get("/", (req, res) => {
     res.send("Subscription Management Backend is running!");
